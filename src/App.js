@@ -11,24 +11,25 @@ export default function App() {
   );
 }
 
-function List(array) {
-  if (Array.isArray(array.list)) {
-    const listItems = array.list.map(item =>
-        <li key={Date.now()}>{item}</li>
-      );
-      return (
-        <ul>
-          {listItems}
-        </ul>
-          
-      );
+function List(list) {
+  if (Array.isArray(list.list)) {
+    const listItems = list.list.map((item, index) =>
+        <li key={index}>{item}</li>
+    );
+    
+    return (
+      <ul>
+        {listItems}
+      </ul>
+        
+    );
   }
       
 }
 
 function Input() {
   const [list, setList] = useState([]);
-  const [filter, setFilter] = useState('all');
+  // const [filter, setFilter] = useState('all');
   const { register, resetField, handleSubmit } = useForm();
 
   function handleInputClick(item) {
@@ -47,9 +48,7 @@ function Input() {
       <form className='input__form' onSubmit={handleSubmit(handleInputClick)}>
         <input className='input__input' placeholder='What needs to be done?' {...register('input', {required: true})} />
       </form>
-        <List array={list} />
-      
-      
+      <List list={list} />
     </div>
     
   )
