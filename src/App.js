@@ -13,8 +13,8 @@ export default function App() {
 
 function List(list) {
   if (Array.isArray(list.list)) {
-    const listItems = list.list.map((item, index) =>
-        <li key={index}>{item}</li>
+    const listItems = list.list.map(item =>
+        <li key={Date.now}>{item}</li>
     );
     
     return (
