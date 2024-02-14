@@ -12,11 +12,10 @@ export default function App() {
 }
 
 function List(list) {
-  if (Array.isArray(list.list)) {
+  if (list.list[0].value !== null) {
     const listItems = list.list.map(item =>
-        <li key={Date.now}>{item}</li>
+        <li key={item.id}>{item.value}</li>
     );
-    
     return (
       <ul>
         {listItems}
@@ -28,17 +27,26 @@ function List(list) {
 }
 
 function Input() {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState([{id: null, value: null}]);
   // const [filter, setFilter] = useState('all');
   const { register, resetField, handleSubmit } = useForm();
 
   function handleInputClick(item) {
-    setList(
+    if (list[0].value === null) {
+      setList(
+        [
+          {id: Date.now(), value: item.input}
+        ]
+      );
+    } else {
+      setList(
       [
-        item.input,
+        {id: Date.now(), value: item.input},
         ...list
       ]
     );
+    }
+    
     resetField('input');    
   }
 
