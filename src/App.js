@@ -11,18 +11,16 @@ export default function App() {
   );
 }
 
-function List(list) {
-  const listId = useRef(0);
-  console.log(list.list);
-  if (Array.isArray(list.list)) {
-    const listItems = list.list.map(item =>
-        <li key={listId.current}>{item}</li>
+function List(array) {
+  if (Array.isArray(array.list)) {
+    const listItems = array.list.map(item =>
+        <li key={Date.now()}>{item}</li>
       );
-    listId.current++;
       return (
         <ul>
-          <li>{listItems}</li>
+          {listItems}
         </ul>
+          
       );
   }
       
@@ -49,7 +47,8 @@ function Input() {
       <form className='input__form' onSubmit={handleSubmit(handleInputClick)}>
         <input className='input__input' placeholder='What needs to be done?' {...register('input', {required: true})} />
       </form>
-      <List list={list} />
+        <List array={list} />
+      
       
     </div>
     
