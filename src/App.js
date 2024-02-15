@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import './App.css';
 
 
@@ -11,10 +11,9 @@ export default function App() {
   );
 }
 
-function List({list}) {
+function List({ list, deleteItem}) {
   const startEditing = (e) => e.target.setAttribute('contentEditable', 'true');
   const stopEditing = (e) => e.target.setAttribute('contentEditable', 'false');
-    
   if (list[0].value !== null) {
     const listItems = list.map(item =>
         <li key={item.id}  className='input__item'>
@@ -30,7 +29,7 @@ function List({list}) {
               }
             }
           >{item.value}</span>
-          <button type='button'>x</button>
+          <button type='button' className='item__delete' onClick={() => deleteItem(item)}>×</button>
         </li>
         
     );
@@ -48,6 +47,14 @@ function Input() {
   // const [filter, setFilter] = useState('all');
   const { register, resetField, handleSubmit } = useForm();
 
+  function deleteCurrentItem(currentItem) {
+    const deletedArray = list.filter(item => item.id !== currentItem.id);
+    if (deletedArray.length > 0) {
+      setList(deletedArray);
+    } else {
+      setList([{id: null, value: null}]);
+    }
+  }
   function handleInputClick(item) {
     if (list[0].value === null) {
       setList(
@@ -73,7 +80,7 @@ function Input() {
       <form className='input__form' onSubmit={handleSubmit(handleInputClick)}>
         <input className='input__input' placeholder='What needs to be done?' {...register('input', {required: true})} />
       </form>
-      <List list={list} />
+      <List list={list} deleteItem={deleteCurrentItem}/>
     </div>
     
   )
