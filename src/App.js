@@ -11,10 +11,28 @@ export default function App() {
   );
 }
 
-function List(list) {
-  if (list.list[0].value !== null) {
-    const listItems = list.list.map(item =>
-        <li key={item.id}>{item.value}</li>
+function List({list}) {
+  const startEditing = (e) => e.target.setAttribute('contentEditable', 'true');
+  const stopEditing = (e) => e.target.setAttribute('contentEditable', 'false');
+    
+  if (list[0].value !== null) {
+    const listItems = list.map(item =>
+        <li key={item.id}  className='input__item'>
+          <input type='checkbox'/>
+          <span className='item__text'
+            onClick={startEditing}
+            onBlur={stopEditing}
+            onKeyDown={
+              (e) => {
+                if (e.key === 'Enter') {
+                  stopEditing(e);
+                }
+              }
+            }
+          >{item.value}</span>
+          <button type='button'>x</button>
+        </li>
+        
     );
     return (
       <ul>
@@ -23,7 +41,6 @@ function List(list) {
         
     );
   }
-      
 }
 
 function Input() {

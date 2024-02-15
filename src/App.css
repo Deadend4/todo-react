@@ -27,6 +27,17 @@
   box-sizing: border-box;
 }
 
+ul {
+  padding: 0px 24px;
+  margin: 0;
+  width: 100%;
+}
+
+li {
+  list-style-type: none;
+}
+
+
 .App {
   display: flex;
   justify-content: center;
@@ -54,7 +65,7 @@
 }
 
 .input__form {
-  padding: 24px;
+  padding: 24px 24px 0px;
   width: 100%;
 }
 
@@ -83,4 +94,29 @@
   outline: none;
   border: 1px solid var(--color-heading);
   box-shadow: 0 2px 20px #b83f4567;
+}
+
+.input__item {
+  font-size: var(--font-size-text-d);
+  font-family: var(--font-family-text);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  background-color: var(--color-bg-section);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  width: 100%;
+}
+
+.item__text {
+  max-width: 400px;
+  width: 100%;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+
+.item__text:focus {
+  outline: 2px solid var(--color-heading);
 }
