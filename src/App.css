@@ -28,17 +28,6 @@
   box-sizing: border-box;
 }
 
-ul {
-  padding: 0px 24px;
-  margin: 0;
-  width: 100%;
-}
-
-li {
-  list-style-type: none;
-}
-
-
 .App {
   display: flex;
   justify-content: center;
@@ -47,97 +36,4 @@ li {
   background-color: var(--color-bg-main);
   color: var(--color-text);
   font-weight: var(--font-weight-text);
-}
-
-.input {
-  display: flex;
-  align-items: center;
-  flex-flow: column nowrap;
-  max-width: 550px;
-  width: 100%;
-}
-
-.input__heading {
-  font-size: var(--font-size-heading-d);
-  font-family: var(--font-family-heading);
-  font-weight: var(--font-weight-heading);
-
-  color: var(--color-heading);
-}
-
-.input__form {
-  padding: 24px 24px 0px;
-  width: 100%;
-}
-
-.input__input {
-  font-size: var(--font-size-text-d);
-  font-family: var(--font-family-text);
-  background-color: var(--color-bg-section);
-  border: 1px solid transparent;
-  border-radius: 4px 4px 0px 0px;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-  padding: 1.2rem 1rem 1.2rem 3.5rem;
-  width: 100%;
-}
-
-.input__input::placeholder {
-  color: var(--сolor-placeholder);
-  font-style: italic;
-}
-
-.input__input:hover {
-  border: 1px solid var(--color-heading);
-}
-
-.input__input:focus {
-  outline: none;
-  border: 1px solid var(--color-heading);
-  box-shadow: 0 2px 20px #b83f4567;
-}
-
-.input__item {
-  font-size: var(--font-size-text-d);
-  font-family: var(--font-family-text);
-  font-weight: var(--font-weight-text);
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--color-bg-section);
-  border: 1px solid transparent;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  padding: 1rem;
-  width: 100%;
-}
-
-.item__text {
-  max-width: 400px;
-  width: 100%;
-  text-align: start;
-  overflow-wrap: anywhere;
-}
-
-.item__text:focus {
-  outline: 2px solid var(--color-heading);
-}
-
-.item__delete {
-  visibility: hidden;
-  border: none;
-  background: none;
-  color: var(--color-counter);
-  font-size: var(--font-size-delete);
-  padding: 0;
-  max-height: 30px;
-  max-width: 30px;
-  align-content: center;
-}
-
-.input__item:hover .item__delete {
-  visibility: visible;
-}
-
-.item__delete:hover {
-  color: var(--color-heading);
 }
