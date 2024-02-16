@@ -3,7 +3,7 @@
   --font-family-heading: Arial, Helvetica, sans-serif;
   --font-family-text: sans-serif;
   --font-weight-heading: 100;
-  --font-weight-text: 600;
+  --font-weight-text: 400;
   /*Colors*/
   --color-bg-main: #f5f5f5;
   --color-bg-section: #fff;
@@ -15,6 +15,7 @@
   /*Desktop*/
   --font-size-heading-d: 5rem;
   --font-size-text-d: 1.5rem;
+  --font-size-delete: 2rem;
   /*Tablet*/
   --font-size-heading-t: 4.7rem;
   --font-size-text-t: 1.4rem;
@@ -35,52 +36,4 @@
   background-color: var(--color-bg-main);
   color: var(--color-text);
   font-weight: var(--font-weight-text);
-}
-
-.input {
-  display: flex;
-  align-items: center;
-  flex-flow: column nowrap;
-  max-width: 550px;
-  width: 100%;
-}
-
-.input__heading {
-  font-size: var(--font-size-heading-d);
-  font-family: var(--font-family-heading);
-  font-weight: var(--font-weight-heading);
-
-  color: var(--color-heading);
-}
-
-.input__form {
-  padding: 24px;
-  width: 100%;
-}
-
-.input__input {
-  font-size: var(--font-size-text-d);
-  font-family: var(--font-family-text);
-
-  background-color: var(--color-bg-section);
-  border: 1px solid transparent;
-  border-radius: 4px;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-  padding: 1.2rem 1rem 1.2rem 3.5rem;
-  width: 100%;
-}
-
-.input__input::placeholder {
-  color: var(--сolor-placeholder);
-  font-style: italic;
-}
-
-.input__input:hover {
-  border: 1px solid var(--color-heading);
-}
-
-.input__input:focus {
-  outline: none;
-  border: 1px solid var(--color-heading);
-  box-shadow: 0 2px 20px #b83f4567;
 }
