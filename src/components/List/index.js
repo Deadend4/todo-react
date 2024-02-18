@@ -1,28 +1,48 @@
 import styles from './List.module.css';
 
-export default function List({ list, deleteItem }) {
+export default function List({
+  list,
+  onItemCrossClick,
+  onItemCheckboxClick,
+  onItemTextChange,
+}) {
   const startEditing = (e) => e.target.setAttribute('contentEditable', 'true');
-  const stopEditing = (e) => e.target.setAttribute('contentEditable', 'false');
+  const stopEditing = (e, item) =>
+    e.target.setAttribute('contentEditable', 'false');
+
   if (list.length > 0) {
     const listItems = list.map((item) => (
       <li key={item.id} className={styles.listItem}>
-        <input type="checkbox" />
-        <span
+        <input
+          id={`checkbox${item.id}`}
+          type="checkbox"
+          className={styles.checkbox}
+          checked={item.completed}
+          onChange={() =>
+            onItemCheckboxClick({ ...item, completed: !item.completed })
+          }
+        />
+        <label
+          htmlFor={`checkbox${item.id}`}
+          className={styles.checkboxLabel}
+        ></label>
+        <input
           className={styles.text}
-          onClick={startEditing}
-          onBlur={stopEditing}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              stopEditing(e);
+          onBlur={(e) => {
+            onItemTextChange({ ...item, value: e.target.value });
+            if (!e.target.value) {
+              e.target.value = item.value;
             }
           }}
-        >
-          {item.value}
-        </span>
+          onTransitionEnd={(e) => {
+            e.target.style.textDecorationLine = 'line-through';
+          }}
+          defaultValue={item.value}
+        />
         <button
           type="button"
           className={styles.deleteButton}
-          onClick={() => deleteItem(item)}
+          onClick={() => onItemCrossClick(item)}
         >
           ×
         </button>

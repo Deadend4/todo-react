@@ -17,8 +17,23 @@ export default function Form() {
     const deletedArray = list.filter((item) => item.id !== currentItem.id);
     setList(deletedArray);
   }
+  function handleItemChange(currentItem) {
+    const changedArray = list.map((item) => {
+      if (item.id === currentItem.id) {
+        if (currentItem.value === '') {
+          // console.log('Зашло!', item, currentItem);
+          return item;
+        }
+        return currentItem;
+      } else {
+        return item;
+      }
+    });
+    setList(changedArray);
+  }
+  console.log(list);
   function handleInputClick(item) {
-    const newItem = { id: Date.now(), value: item.input };
+    const newItem = { id: Date.now(), value: item.input, completed: false };
     setList([newItem, ...list]);
     resetField('input');
     clearErrors();
@@ -44,7 +59,12 @@ export default function Form() {
           })}
         />
       </form>
-      <List list={list} deleteItem={deleteCurrentItem} />
+      <List
+        list={list}
+        onItemCrossClick={deleteCurrentItem}
+        onItemCheckboxClick={handleItemChange}
+        onItemTextChange={handleItemChange}
+      />
     </div>
   );
 }
