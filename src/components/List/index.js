@@ -6,10 +6,6 @@ export default function List({
   onItemCheckboxClick,
   onItemTextChange,
 }) {
-  const startEditing = (e) => e.target.setAttribute('contentEditable', 'true');
-  const stopEditing = (e, item) =>
-    e.target.setAttribute('contentEditable', 'false');
-
   if (list.length > 0) {
     const listItems = list.map((item) => (
       <li key={item.id} className={styles.listItem}>
