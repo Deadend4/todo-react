@@ -35,7 +35,7 @@ export default function List({
             }
           }}
           onTransitionEnd={(e) => {
-            e.target.style.textDecorationLine = 'line-through';
+            e.target.style.textDecorationLine = item.completed ? 'line-through' : 'none';
           }}
           defaultValue={item.value}
         />
