@@ -13,27 +13,38 @@ export default function Form() {
     formState: { errors },
     clearErrors,
   } = useForm({ reValidateMode: 'onSubmit' });
+
   function deleteCurrentItem(currentItem) {
     const deletedArray = list.filter((item) => item.id !== currentItem.id);
     setList(deletedArray);
+  }
+  function handleTextDisable(currentItem) {
+    const disabledArray = list.map((item) => {
+      if (item.id === currentItem.id) {
+        return currentItem;
+      } else {
+        return item;
+      }
+      
+    });
+    setList(disabledArray);
   }
   function handleItemChange(currentItem) {
     const changedArray = list.map((item) => {
       if (item.id === currentItem.id) {
         if (currentItem.value === '') {
-          // console.log('Зашло!', item, currentItem);
           return item;
+        } else {
+          return currentItem;
         }
-        return currentItem;
       } else {
         return item;
       }
     });
     setList(changedArray);
   }
-  console.log(list);
   function handleInputClick(item) {
-    const newItem = { id: Date.now(), value: item.input, completed: false };
+    const newItem = { id: Date.now(), value: item.input, completed: false};
     setList([newItem, ...list]);
     resetField('input');
     clearErrors();
@@ -64,6 +75,7 @@ export default function Form() {
         onItemCrossClick={deleteCurrentItem}
         onItemCheckboxClick={handleItemChange}
         onItemTextChange={handleItemChange}
+        onTextClick={handleTextDisable}
       />
     </div>
   );

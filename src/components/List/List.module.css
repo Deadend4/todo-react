@@ -45,7 +45,6 @@
 }
 
 .checkbox:checked~.text {
-  /* text-decoration-line: line-through; */
   opacity: 0.5;
 }
 
@@ -61,11 +60,16 @@
   width: 100%;
   text-align: start;
   overflow-wrap: anywhere;
-  transition: opacity linear 0.2s;
+  transition: opacity linear 0.15s;
 }
 
 .text:focus {
   outline: 2px solid var(--color-heading);
+}
+
+
+.text[readOnly] {
+  outline: none;
 }
 
 .deleteButton {
