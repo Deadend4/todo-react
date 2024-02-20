@@ -33,18 +33,18 @@ export default function Form() {
     const changedArray = list.map((item) => {
       if (item.id === currentItem.id) {
         if (currentItem.value === '') {
-          return {...item, readOnly: currentItem.readOnly};
+          return item;
         } else {
           return currentItem;
         }
       } else {
-        return {...item, readOnly: currentItem.readOnly};
+        return item;
       }
     });
     setList(changedArray);
   }
   function handleInputClick(item) {
-    const newItem = { id: Date.now(), value: item.input, completed: false, readOnly: true};
+    const newItem = { id: Date.now(), value: item.input, completed: false};
     setList([newItem, ...list]);
     resetField('input');
     clearErrors();
