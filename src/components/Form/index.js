@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Children, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import List from '../List';
 import Tooltip from '../Tooltip';
@@ -54,9 +54,10 @@ export default function Form() {
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}>Список дел</h1>
-      <form className={styles.form} onSubmit={handleSubmit(handleInputClick)}>
       <Tooltip message={'Пожалуйста, введите что-нибудь!'}
-                  canShow={errors.input?.type === 'required'}/>
+                canShow={errors.input?.type === 'required'}
+                children>
+      <form className={styles.form} onSubmit={handleSubmit(handleInputClick)}>
         <input
           className={styles.input}
           placeholder="Что нужно сделать?"
@@ -68,6 +69,7 @@ export default function Form() {
           })}
         />
       </form>
+      </Tooltip>
       
       <List
         list={list}
