@@ -1,0 +1,20 @@
+.tooltipText {
+    padding: 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: var(--color-bg-main);
+    background-color: var(--color-heading);
+
+}
+
+.tooltipTextVisible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s linear;
+}
+
+.tooltipTextHidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s linear, visibility 0.3s;
+}

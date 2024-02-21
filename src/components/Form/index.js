@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import List from '../List';
+import Tooltip from '../Tooltip';
 import styles from './Form.module.css';
 
 export default function Form() {
@@ -53,11 +54,9 @@ export default function Form() {
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}>Список дел</h1>
-      {errors.input?.type === 'required' ? (
-        <span>Пожалуйста, введите что-нибудь!</span>
-      ) : (
-        false
-      )}
+      <Tooltip message={'Пожалуйста, введите что-нибудь!'}
+                canShow={errors.input?.type === 'required'}
+                children>
       <form className={styles.form} onSubmit={handleSubmit(handleInputClick)}>
         <input
           className={styles.input}
@@ -70,6 +69,8 @@ export default function Form() {
           })}
         />
       </form>
+      </Tooltip>
+      
       <List
         list={list}
         onItemCrossClick={deleteCurrentItem}
