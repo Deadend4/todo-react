@@ -1,14 +1,9 @@
 import styles from './Tooltip.module.css';
 
 export default function Tooltip({message, canShow}) {
-    if (canShow) {
-        return (
-            <span className={styles.tooltipText}>{message}</span>
-        );
-    } else {
-        return (
-            <span className={styles.tooltipTextHidden}>{message}</span>
-        );
-    }
+    const tooltipClasses = `${styles.tooltipText} ${canShow ? styles.tooltipTextVisible : styles.tooltipTextHidden}`
+    return (
+        <span className={tooltipClasses}>{message}</span>
+    );
     
 }

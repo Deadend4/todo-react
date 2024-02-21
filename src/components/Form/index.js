@@ -54,9 +54,9 @@ export default function Form() {
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}>Список дел</h1>
+      <form className={styles.form} onSubmit={handleSubmit(handleInputClick)}>
       <Tooltip message={'Пожалуйста, введите что-нибудь!'}
                   canShow={errors.input?.type === 'required'}/>
-      <form className={styles.form} onSubmit={handleSubmit(handleInputClick)}>
         <input
           className={styles.input}
           placeholder="Что нужно сделать?"
@@ -68,6 +68,7 @@ export default function Form() {
           })}
         />
       </form>
+      
       <List
         list={list}
         onItemCrossClick={deleteCurrentItem}
