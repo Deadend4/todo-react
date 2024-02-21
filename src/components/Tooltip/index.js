@@ -1,4 +1,3 @@
-import { Children } from 'react';
 import styles from './Tooltip.module.css';
 
 export default function Tooltip({ message, canShow, children }) {
