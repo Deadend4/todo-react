@@ -4,6 +4,8 @@
   flex-flow: column nowrap;
   max-width: 550px;
   width: 100%;
+  box-sizing: border-box;
+  padding: 0 24px;
 }
 
 .heading {
@@ -15,7 +17,7 @@
 }
 
 .form {
-  padding: 24px 24px 0px;
+  padding-top: 24px;
   width: 100%;
 }
 

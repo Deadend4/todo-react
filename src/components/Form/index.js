@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import List from '../List';
 import Tooltip from '../Tooltip';
+import Filters from '../Filters';
 import styles from './Form.module.css';
 
 export default function Form() {
   const [list, setList] = useState([]);
-  // const [filter, setFilter] = useState('all');
+  const [countLeft, setCountLeft] = useState(0);
   const {
     register,
     resetField,
@@ -18,18 +19,12 @@ export default function Form() {
   function deleteCurrentItem(currentItem) {
     const deletedArray = list.filter((item) => item.id !== currentItem.id);
     setList(deletedArray);
+    if (!currentItem.completed) {
+      setCountLeft(countLeft => countLeft - 1);
+    }
+    
   }
-  function handleTextDisable(currentItem) {
-    const disabledArray = list.map((item) => {
-      if (item.id === currentItem.id) {
-        return currentItem;
-      } else {
-        return item;
-      }
-      
-    });
-    setList(disabledArray);
-  }
+  
   function handleItemChange(currentItem) {
     const changedArray = list.map((item) => {
       if (item.id === currentItem.id) {
@@ -47,10 +42,18 @@ export default function Form() {
   function handleInputClick(item) {
     const newItem = { id: Date.now(), value: item.input, completed: false};
     setList([newItem, ...list]);
+    setCountLeft(countLeft => countLeft + 1);
     resetField('input');
     clearErrors();
   }
-
+  function handleListChange(newList, isCompleted) {
+    const filteredList = newList.filter((item) => item.completed === isCompleted);
+    setList(filteredList);
+  }
+  function updateItemCounter(currentCount) {
+    setCountLeft(currentCount);
+  }
+ 
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}>Список дел</h1>
@@ -76,7 +79,14 @@ export default function Form() {
         onItemCrossClick={deleteCurrentItem}
         onItemCheckboxClick={handleItemChange}
         onItemTextChange={handleItemChange}
-        onTextClick={handleTextDisable}
+        onUpdateCounter={updateItemCounter}
+        countLeft={countLeft}
+      />
+      <Filters 
+        list={list} 
+        countLeft={countLeft} 
+        onListFilter={handleListChange} 
+        onSetList={setList} 
       />
     </div>
   );

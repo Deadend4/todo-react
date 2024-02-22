@@ -5,7 +5,8 @@ export default function List({
   onItemCrossClick,
   onItemCheckboxClick,
   onItemTextChange,
-  onTextClick,
+  onUpdateCounter,
+  countLeft,
 }) {
   const startTextEditing = (e, item) => {
     e.target.removeAttribute('readonly');
@@ -33,9 +34,10 @@ export default function List({
           type="checkbox"
           className={styles.checkbox}
           checked={item.completed}
-          onChange={() =>
-            onItemCheckboxClick({ ...item, completed: !item.completed })
-          }
+          onChange={() => {
+            onItemCheckboxClick({ ...item, completed: !item.completed });
+            onUpdateCounter(() => item.completed ? countLeft++ : countLeft--);
+          }}
         />
         <label
           htmlFor={`checkbox${item.id}`}
