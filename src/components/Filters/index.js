@@ -1,25 +1,22 @@
 import styles from './Filters.module.css';
 import { useRef } from 'react';
 
-export default function Filters({list, countLeft, onListFilter, onSetList}) {
-    const listRef = useRef(null);
+export default function Filters({
+    list,
+    countLeft,
+    onChangeFilter,
+    listItems
+}) {
 
     function showAll() {
-        onSetList(listRef.current);
-        listRef.current = null;
+
     }
     function showActive() {
-        if (!listRef.current) {
-            listRef.current = [...list];
-        }
-        onListFilter(listRef.current, false);
+        
     }
 
     function showCompleted() {
-        if (!listRef.current) {
-            listRef.current = [...list];
-        }
-        onListFilter(listRef.current, true);
+        onChangeFilter('completed', false, ['none']);
     }
 
     if (list.length === 0) return false;

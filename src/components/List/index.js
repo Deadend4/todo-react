@@ -1,4 +1,5 @@
 import styles from './List.module.css';
+import { useRef } from 'react';
 
 export default function List({
   list,
@@ -7,6 +8,7 @@ export default function List({
   onItemTextChange,
   onUpdateCounter,
   countLeft,
+  listItems
 }) {
   const startTextEditing = (e, item) => {
     e.target.removeAttribute('readonly');
@@ -27,7 +29,7 @@ export default function List({
   }
 
   if (list.length > 0) {
-    const listItems = list.map((item) => (
+    listItems = list.map((item) => (
       <li key={item.id} className={styles.listItem}>
         <input
           id={`checkbox${item.id}`}

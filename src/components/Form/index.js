@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import List from '../List';
 import Tooltip from '../Tooltip';
@@ -8,6 +8,8 @@ import styles from './Form.module.css';
 export default function Form() {
   const [list, setList] = useState([]);
   const [countLeft, setCountLeft] = useState(0);
+  const [filter, setFilter] = useState('All');
+  const listItems = useRef([]);
   const {
     register,
     resetField,
@@ -46,9 +48,9 @@ export default function Form() {
     resetField('input');
     clearErrors();
   }
-  function handleListChange(newList, isCompleted) {
-    const filteredList = newList.filter((item) => item.completed === isCompleted);
-    setList(filteredList);
+  function handleFilterChange(filter, isCompleted, listFiltered) {
+    List({list: listFiltered});
+    setFilter(filter);
   }
   function updateItemCounter(currentCount) {
     setCountLeft(currentCount);
@@ -81,12 +83,13 @@ export default function Form() {
         onItemTextChange={handleItemChange}
         onUpdateCounter={updateItemCounter}
         countLeft={countLeft}
+        listItems={listItems.current}
       />
       <Filters 
         list={list} 
         countLeft={countLeft} 
-        onListFilter={handleListChange} 
-        onSetList={setList} 
+        onChangeFilter={handleFilterChange}
+        listItems={listItems.current}
       />
     </div>
   );
